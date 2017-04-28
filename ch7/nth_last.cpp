@@ -33,22 +33,22 @@ ListNode* add(vector<int> v) {
 }
 
 ListNode* removeNthElement(ListNode* head, int n) {
-    ListNode *iter1 = head;
-    ListNode* iter2 = head;
+    ListNode *ahead = head;
+    ListNode* current = head;
     for (int i = 0; i <= n; ++i) {
         // Deal with border case when one element is to be
         // deleted.
-        if (!iter2)
-            return iter1->next;
-        iter2 = iter2->next;
+        if (!current)
+            return ahead->next;
+        current = current->next;
     }
-    while (iter2) {
-        iter1 = iter1->next;
-        iter2 = iter2->next;
+    while (current) {
+        current = current->next;
+        ahead = ahead->next;
     }
-    ListNode*tmp = iter1->next;
-    if (iter1->next)
-        iter1->next = iter1->next->next;
+    ListNode*tmp = ahead->next;
+    if (ahead->next)
+        ahead->next = ahead->next->next;
     delete tmp;
     return head;
 }
